@@ -5,15 +5,17 @@ from sklearn.model_selection import train_test_split
 import pickle
 import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(os.path.dirname(BASE_DIR), 'dataset', 'loan_data.csv')
+MODEL_PATH = os.path.join(BASE_DIR, 'loan_model.pkl')
+
 def train_model():
     print("Loading dataset...")
-    # Load dataset
-    data_path = os.path.join("..", "dataset", "loan_data.csv")
-    if not os.path.exists(data_path):
-        print(f"Error: Dataset not found at {data_path}")
+    if not os.path.exists(DATA_PATH):
+        print(f"Error: Dataset not found at {DATA_PATH}")
         return
 
-    df = pd.read_csv(data_path)
+    df = pd.read_csv(DATA_PATH)
     
     # Fill missing values
     df['Gender'] = df['Gender'].fillna(df['Gender'].mode()[0])
@@ -62,8 +64,8 @@ def train_model():
     accuracy = model.score(X_test, y_test)
     print(f"Model trained successfully! Test Accuracy: {accuracy*100:.2f}%")
     
-    print("Saving model to loan_model.pkl...")
-    with open('loan_model.pkl', 'wb') as f:
+    print(f"Saving model to {MODEL_PATH}...")
+    with open(MODEL_PATH, 'wb') as f:
         pickle.dump(model, f)
         
     print("Done!")
