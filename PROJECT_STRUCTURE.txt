@@ -1,0 +1,20 @@
+Loan_Eligibility_Project/
+│
+├── backend/
+│   ├── app.py                 # Flask API server
+│   ├── model_train.py         # Model training script
+│   └── requirements.txt       # Python dependencies
+│
+├── frontend/
+│   ├── index.html             # Main HTML page
+│   ├── style.css              # All styles and animations
+│   └── script.js              # Frontend logic
+│
+├── dataset/
+│   └── DATASET_INFO.md        # Dataset download instructions
+│
+└── README.md                  # Complete documentation
+
+Notes:
+- loan_model.pkl will be created in backend/ after running model_train.py
+- loan_data.csv should be added to dataset/ folder (download from Kaggle)
